@@ -21,10 +21,11 @@ program
 prinspector({
   debug: program.debug,
   limit: program.limit,
-  pretty: program.pretty,
-  onComplete: (diffs) => {
+  pretty: program.pretty
+})
+  .then((diffs) => {
     spinner.stop(true);
     print(`Retrieved ${diffs.length} diffs`, program.debug);
     console.log(program.pretty ? prettyjson.render(diffs) : JSON.stringify(diffs));
-  }
-});
+  })
+  .catch((err) => console.log(err));
