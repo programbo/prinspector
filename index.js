@@ -14,25 +14,11 @@ let options = {
 module.exports = function (opts) {
   options = extend(options, opts);
 
-  github.setDebug(options.debug);
-  github.setLimit(options.limit);
-
-  const diffs = github.authenticate(auth)
-    .then(github.getRepos)
-    .then(github.getPRs, handleError('getRepos'))
-    .then(github.getLabels, handleError('getPRs'))
-    .then(github.getDiffs, handleError('getLabels'));
-
-  diffs.then(outputDiffs, handleError('getDiffs'));
+  github.getOpenPRs(auth, options.limit, options.debug)
+    .then(outputDiffs)
+    .catch((err) => console.log(err));
 };
 
 function outputDiffs(diffs) {
   options.onComplete && options.onComplete(diffs);
-}
-
-function handleError(type) {
-  return (err) => {
-    console.error('ERROR:', type);
-    console.error(err);
-  }
 }
