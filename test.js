@@ -6,16 +6,15 @@ describe('PRInspector', () => {
   describe('print', () => {
     let stdoutWrite;
     let log;
-    beforeEach(() => {
+    before(() => {
       stdoutWrite = process.stdout.write;
       process.stdout.write = (message) => {
         log.push(message);
-        // stdoutWrite(message);
       };
     });
     beforeEach(() => log = []);
     afterEach(() => log = []);
-    afterEach(() => process.stdout.write = stdoutWrite);
+    after(() => process.stdout.write = stdoutWrite);
     const print = require('./lib/print');
     it('Should write to stdout', () => {
       print('Hello world', true);
@@ -27,7 +26,7 @@ describe('PRInspector', () => {
     });
     it('should concatenate an array', () => {
       print(['Hello', ' ', 'world'], true);
-      expect(log.slice(2).join('')).to.eql('Hello world\n');
+      expect(log.slice(-1).toString()).to.eql('Hello world\n');
     });
   });
 
@@ -35,12 +34,12 @@ describe('PRInspector', () => {
     let program;
     before(() => {
       const child_process = require('child_process');
-      program = child_process.spawn('./prinspector.js', ['-l', 1]);
+      program = child_process.spawn('./prinspector.js', ['-l', 2]);
     });
     it('should return an array', function (done) {
       this.timeout(0);
       let lastOutput;
-      program.stdout.on('data', function(data) {
+      program.stdout.on('data', (data) => {
         lastOutput = data.toString();
       });
       program.on('exit', (exitCode) => {
