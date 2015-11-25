@@ -14,10 +14,6 @@ module.exports = function (opts) {
   options = extend(options, opts);
 
   github.getOpenPRs(auth, options.limit, options.debug)
-    .then(outputDiffs)
+    .then(options.onComplete)
     .catch((err) => console.log(err));
 };
-
-function outputDiffs(diffs) {
-  options.onComplete && options.onComplete(diffs);
-}
