@@ -17,8 +17,8 @@ module.exports = function (opts) {
   github.setDebug(options.debug);
   github.setLimit(options.limit);
 
-  github.authenticate(auth);
-  const diffs = github.getRepos()
+  const diffs = github.authenticate(auth)
+    .then(github.getRepos)
     .then(github.getPRs, handleError('getRepos'))
     .then(github.getLabels, handleError('getPRs'))
     .then(github.getDiffs, handleError('getLabels'));
