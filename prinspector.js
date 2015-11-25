@@ -25,6 +25,6 @@ prinspector({
   onComplete: (diffs) => {
     spinner.stop(true);
     print(`Retrieved ${diffs.length} diffs`, program.debug);
-    print(program.pretty ? prettyjson.render(diffs) : JSON.stringify(diffs), true);
+    console.log(program.pretty ? prettyjson.render(diffs) : JSON.stringify(diffs));
   }
 });
