@@ -2,8 +2,7 @@
 const expect = require('chai').expect;
 
 describe('PRInspector', () => {
-
-  describe('print', () => {
+  describe('print module', () => {
     let stdoutWrite;
     let log;
     before(() => {
