@@ -37,13 +37,13 @@ describe('PRInspector', () => {
     });
     it('should return an array', function (done) {
       this.timeout(0);
-      let lastOutput;
+      let output = '';
       program.stdout.on('data', (data) => {
-        lastOutput = data.toString();
+        output += data.toString();
       });
       program.on('exit', (exitCode) => {
         expect(exitCode).to.eql(0);
-        const response = JSON.parse(lastOutput);
+        const response = JSON.parse(output);
         expect(response).to.be.an.instanceof(Array);
         done();
       });
