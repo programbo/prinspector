@@ -14,13 +14,24 @@ program
   .option("-p, --pretty", "Pretty output")
   .parse(process.argv);
 
+/**
+ * Request a list of all open PRs
+ * @param  {String}  tokenName: Token Name
+ * @param  {String}  tokenFile: File Name
+ * @param  {Array}   scope:     List of priviledges required to access repos
+ * @param  {Boolean} debug:     program.debug  [description]
+ * @param  {Integer} limit:     program.limit} [description]
+ * @return {Array}              All open pull requests
+ */
 prinspector({
+  tokenName: "Demands",
+  tokenFile: "token",
+  scope: ["repo"],
   debug: program.debug,
-  limit: program.limit,
-  pretty: program.pretty
+  limit: program.limit
 })
-  .then((diffs) => {
-    print(`Retrieved ${diffs.length} diffs`, program.debug);
-    console.log(program.pretty ? prettyjson.render(diffs) : JSON.stringify(diffs));
+  .then((prs) => {
+    print(`Retrieved ${prs.length} open pull-requests`, program.debug);
+    console.log(program.pretty ? prettyjson.render(prs) : JSON.stringify(prs));
   })
   .catch((err) => console.log(err));
