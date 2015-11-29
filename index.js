@@ -1,7 +1,7 @@
 "use strict";
 
 const auth = require("./lib/auth");
-const github = require("./lib/github");
+const pullRequests = require("./lib/pull-requests");
 
 /**
  * Read the list of open PRs from the Github API
@@ -15,6 +15,6 @@ const github = require("./lib/github");
 module.exports = function (options) {
   return auth(options.tokenName, options.tokenFile, options.scope)
     .then((credentials) => {
-      return github.getOpenPRs(credentials, options.limit, options.debug);
+      return pullRequests.getOpenPRs(credentials, options.limit, options.debug);
     });
 };
