@@ -7,7 +7,7 @@ const print = require("./lib/print");
 const tty = require("tty");
 
 program
-  .version("1.0.0")
+  .version("1.0.1")
   .usage("[options]")
   .option("-d, --debug", "Run in debug mode")
   .option("-l, --limit <n>", "Limit the maximum number of repositories", parseInt)
