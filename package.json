@@ -1,5 +1,5 @@
 {
-  "name": "prinspector",
+  "name": "pull-request-inspector",
   "version": "1.0.0",
   "description": "Inspect all open PRs in all available repositories",
   "main": "index.js",
