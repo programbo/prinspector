@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node prinspector.js -d -p",
-    "test": "mocha test.js -w"
+    "test": "mocha tests/test.js -w"
   },
   "repository": {
     "type": "git",
@@ -30,6 +30,8 @@
   },
   "devDependencies": {
     "chai": "^3.4.1",
+    "gulp": "^3.9.0",
+    "gulp-mocha": "^2.2.0",
     "mocha": "^2.3.4"
   }
 }
