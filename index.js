@@ -1,6 +1,6 @@
 "use strict";
 
-const auth = require("./lib/auth");
+const auth = require("./lib/github-authentication");
 const pullRequests = require("./lib/pull-requests");
 
 /**
