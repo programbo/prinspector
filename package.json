@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node prinspector.js -d -p",
-    "test": "mocha test.js"
+    "test": "mocha tests/test.js -w"
   },
   "repository": {
     "type": "git",
@@ -21,13 +21,17 @@
     "cli-color": "^1.1.0",
     "cli-spinner": "^0.2.1",
     "commander": "^2.9.0",
+    "git-user": "0.0.1",
     "github": "^0.2.4",
     "lodash": "^3.10.1",
     "prettyjson": "^1.1.3",
-    "readline": "^1.2.1"
+    "prompt": "^0.2.14",
+    "request": "^2.67.0"
   },
   "devDependencies": {
     "chai": "^3.4.1",
+    "gulp": "^3.9.0",
+    "gulp-mocha": "^2.2.0",
     "mocha": "^2.3.4"
   }
 }
