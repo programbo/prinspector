@@ -2,7 +2,6 @@
 
 const prettyjson = require("prettyjson");
 const program = require("commander");
-const Spinner = require("cli-spinner").Spinner;
 const prinspector = require("./index");
 const print = require("./lib/print");
 const tty = require("tty");
@@ -15,18 +14,12 @@ program
   .option("-p, --pretty", "Pretty output")
   .parse(process.argv);
 
-// if (tty.isatty()) {
-//   const spinner = new Spinner("%s")
-//   spinner.setSpinnerString(0);
-//   spinner.start();
-// }
 prinspector({
   debug: program.debug,
   limit: program.limit,
   pretty: program.pretty
 })
   .then((diffs) => {
-    // tty.isatty() && spinner.stop(true);
     print(`Retrieved ${diffs.length} diffs`, program.debug);
     console.log(program.pretty ? prettyjson.render(diffs) : JSON.stringify(diffs));
   })
