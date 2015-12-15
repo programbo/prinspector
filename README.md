@@ -17,6 +17,8 @@ $ npm i
 
 ### 3. View your open PRs (raw JSON)
 
+On first run, this will write an OAuth token to a `token` file at your project root.
+
 ```
 $ node prinspector.js
   Sign in to authorize this app to find open pull-requests
