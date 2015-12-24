@@ -1,5 +1,4 @@
 "use strict";
-
 const helper = require("./lib/repo-helper");
 let githubCredentials = null;
 
