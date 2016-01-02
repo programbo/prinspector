@@ -1,7 +1,6 @@
 "use strict";
 
-const auth = require("./lib/github-authentication");
-const pullRequests = require("./lib/pull-requests");
+const helper = require("./lib/repo-helper");
 
 /**
  * Read the list of open PRs from the Github API
@@ -13,8 +12,13 @@ const pullRequests = require("./lib/pull-requests");
  * @return {Array}          A list of all open pull requests
  */
 module.exports = function (options) {
-  return auth(options.tokenName, options.tokenFile, options.scope)
+  return helper.createGithubAuthentication(options.tokenName, options.tokenFile, options.scope)
     .then((credentials) => {
-      return pullRequests.getOpenPRs(credentials, options.limit, options.debug);
+      return helper.getRepos(credentials, options.limit, options.debug)
+        .then((repos) => {
+          return Promise.all(repos.map((repo) => {
+            return helper.getOpenPRs(credentials, repo, options.debug);
+          }))
+        });
     });
 };

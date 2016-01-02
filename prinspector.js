@@ -30,8 +30,9 @@ prinspector({
   debug: program.debug,
   limit: program.limit
 })
-  .then((prs) => {
-    print(`Retrieved ${prs.length} open pull-requests`, program.debug);
-    console.log(program.pretty ? prettyjson.render(prs) : JSON.stringify(prs));
+  .then((repos) => {
+    const nonEmptyRepos = repos.filter((repo) => { return repo.length; });
+    print(`Retrieved ${nonEmptyRepos.length} open pull-requests`, program.debug);
+    console.log(program.pretty ? prettyjson.render(nonEmptyRepos) : JSON.stringify(nonEmptyRepos));
   })
   .catch((err) => console.log(err));
