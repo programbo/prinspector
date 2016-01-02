@@ -1,6 +1,5 @@
 "use strict";
 const helper = require("./lib/repo-helper");
-let githubCredentials = null;
 
 /**
  * Read the list of open PRs from the Github API
@@ -12,12 +11,11 @@ let githubCredentials = null;
  * @return {Array}          A list of all open pull requests
  */
 module.exports = function (options) {
-  return helper.auth(options.tokenName, options.tokenFile, options.scope)
+  return helper.createGithubAuthentication(options.tokenName, options.tokenFile, options.scope)
     .then((credentials) => {
-      githubCredentials = credentials;
-      return helper.getRepos(githubCredentials, options.limit, options.debug)
+      return helper.getRepos(credentials, options.limit, options.debug)
         .then((repos) => {
-          return Promise.all(repos.map(function (repo) {
+          return Promise.all(repos.map((repo) => {
             return helper.getOpenPRs(credentials, repo, options.debug);
           }))
         });
