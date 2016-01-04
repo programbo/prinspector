@@ -1,6 +1,6 @@
 "use strict";
 const helper = require("repohelper");
-let githubCredentials = null;
+
 /**
  * Read the list of open PRs from the Github API
  * @param  {Object} options tokenName: (String) Name of the Token
