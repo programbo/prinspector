@@ -3,7 +3,7 @@
 const prettyjson = require("prettyjson");
 const program = require("commander");
 const prinspector = require("./index");
-const print = require("./lib/print");
+const print = require("repohelper/lib/print");
 const tty = require("tty");
 
 program
