@@ -1,6 +1,5 @@
 "use strict";
-
-const helper = require("./lib/repo-helper");
+const helper = require("repohelper");
 
 /**
  * Read the list of open PRs from the Github API
